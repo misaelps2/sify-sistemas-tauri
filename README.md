@@ -1,37 +1,99 @@
- HEAD
-# React + TypeScript + Vite
+# Sify PDV — Tauri
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sistema de PDV da **Sify Sistemas**, feito para rodar em computador Windows e Linux, inclusive em máquina mais simples.
 
-Currently, two official plugins are available:
+> **pdv-sify-nova-versao-windows-pc-fraco**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Sobre o projeto
 
-## React Compiler
+Esse projeto é a versão desktop do **Sify PDV**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A ideia é ter um programa leve para o comércio, sem aquela enrolação toda. O sistema roda o PDV web dentro do aplicativo usando **Tauri**, aproveitando a aplicação que já existe na Sify Sistemas.
 
-## Expanding the Oxlint configuration
+O foco é rodar bem até em computador mais fraco, uai. 😄
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 🛠️ Tecnologias
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+* **Tauri**
+* **React**
+* **TypeScript**
+* **Vite**
+* **Rust**
+* **PWA**
+* **WebView**
+
+O Tauri funciona como a casca do aplicativo. O sistema de vendas continua sendo a aplicação web da Sify.
+
+## 🖥️ Como funciona
+
+A estrutura é basicamente:
+
+```text
+Computador
+    ↓
+Sify PDV — aplicativo Tauri
+    ↓
+WebView
+    ↓
+https://pdv.sifysistemas.cloud
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+O aplicativo desktop não precisa reescrever o sistema inteiro. Ele serve como uma interface nativa para executar o PDV.
 
-# sify-sistemas-tauri
-pdv-sify-nova-versao-windows-pc-fraco
-ce2d98da95316df2d883d856559eca3ad82a821f
+## 🖨️ Impressão
+
+A impressão é feita através do serviço local da Sify Sistemas.
+
+O PDV conversa com o serviço de impressão pela porta:
+
+```text
+http://localhost:8182
+```
+
+O serviço local fica responsável pela comunicação com as impressoras.
+
+Assim o Tauri não precisa ficar conversando diretamente com cada modelo de impressora.
+
+## ⌨️ Atalhos
+
+O aplicativo possui atalhos globais para algumas funções do PDV.
+
+Atualmente:
+
+* **F2** → alterna tela cheia
+
+Outros atalhos e funções podem ser adicionados conforme o projeto evoluir.
+
+## 📦 Desenvolvimento
+
+Para instalar as dependências:
+
+```bash
+npm install
+```
+
+Para iniciar o projeto:
+
+```bash
+npx tauri dev
+```
+
+Para gerar a versão de produção:
+
+```bash
+npx tauri build
+```
+
+Os arquivos gerados ficam dentro da pasta de build do Tauri.
+
+## 🎯 Objetivo
+
+O objetivo é transformar o Sify PDV em um aplicativo desktop leve, simples e confiável para pequenos comércios.
+
+A ideia é funcionar sem precisar de um computador da NASA pra abrir o caixa. 😂
+
+**Sify Sistemas — Controle, não burocracia.**
+
+---
+
+Desenvolvido por **Nazareno Soluções**.
